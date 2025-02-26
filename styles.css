@@ -1,23 +1,55 @@
 .websitename {
     font-size: 2em;
     font-style: normal;
-    color: rgb(104, 72, 4);
+    color: #f5d20a;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
 }
 
+.container1 {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.containter2 {
+    background-color: #f5d20a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}   
+
 .background {
-    background-color: rgb(223, 238, 15);
+    background-color: brorgb(255, 255, 255);
     padding: 90px;
     border-radius: 90px;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
 }
 
-.map {
+.globe {
     width: 100%;
     height: 400px;
     border-radius: 25px;
     margin-top: 20px;
 }
 
+@media (max-width: 600px) {
+
+    .background {
+        background-image: url(images/Coffeebeans.jpg);
+        background-color: rgb(255, 255, 255);
+        padding: 90px;
+        border-radius: 90px;
+        box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
+    }
+
+    .globe {
+        height: 200px;
+    }
+}   
