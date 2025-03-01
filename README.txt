@@ -1,5 +1,4 @@
 # CoffeeShoppee
-<<<<<<< HEAD
 Coffee Shoppee is an interactive website that brings coffee forms
 
 
@@ -35,7 +34,6 @@ creativity
 
             
 CoffeeShoppee is a place where you can find the best coffee in town. We offer a wide variety of coffee, from espresso to cappuccino, and everything in between. Our coffee is made from  the finest beans, and is brewed to perfection. So come on in, and enjoy a cup of coffee with us! */
-=======
 
 # CoffeeShoppee
 
@@ -133,4 +131,3 @@ CoffeeShoppee is a place where you can find the best coffee in town. We offer a 
 
 : [Planetary.js Documentation](https://planetaryjs.com/documentation/)  ;
 */
->>>>>>> e5f04953a79c0b98a949a53c630600f667d7ec34
