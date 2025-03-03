@@ -1,55 +1,66 @@
-.websitename {
+@import url("../css/reset.css");
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('images/your-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .websitename {
     font-size: 2em;
     font-style: normal;
     color: #f5d20a;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
-}
-
-.container1 {
+  }
+  
+  .container1 {
     background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
-}
-
-.containter2 {
+  }
+  
+  .container2 {
     background-color: #f5d20a;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
-}   
-
-.background {
-    background-color: brorgb(255, 255, 255);
+  }
+  
+  .background {
+    background-color: rgb(255, 255, 255);
     padding: 90px;
     border-radius: 90px;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
-}
-
-.globe {
+  }
+  
+  .globe {
     width: 100%;
-    height: 400px;
+    max-width: 400px;
+    height: auto;
     border-radius: 25px;
     margin-top: 20px;
-}
-
-@media (max-width: 600px) {
-
+  }
+  
+  @media (max-width: 600px) {
     .background {
-        background-image: url(images/Coffeebeans.jpg);
-        background-color: rgb(255, 255, 255);
-        padding: 90px;
-        border-radius: 90px;
-        box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
+      background-image: url('images/Coffeebeans.jpg');
+      background-color: rgb(255, 255, 255);
+      padding: 90px;
+      border-radius: 90px;
+      box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
     }
-
+  
     .globe {
-        height: 200px;
+      height: 200px;
     }
-}   
+  }
+  
