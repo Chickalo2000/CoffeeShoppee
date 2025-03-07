@@ -9,9 +9,9 @@
     // (world-110m-withlakes.json) so we can render lakes.
     globe.loadPlugin(planetaryjs.plugins.earth({
       topojson: { file:   '/world-110m-withlakes.json' },
-      oceans:   { fill:   '#000080' },
-      land:     { fill:   '#339966' },
-      borders:  { stroke: '#008000' }
+      oceans:   { fill:   '#4B3621' },
+      land:     { fill:   '#D1B89F' },
+      borders:  { stroke: '#866C54' }
     }));
     // Load our custom `lakes` plugin to draw lakes; see below.
     globe.loadPlugin(lakes({
@@ -47,6 +47,7 @@
     }, 150);
   
     var canvas = document.getElementById('rotatingGlobe');
+
     // Special code to handle high-density displays (e.g. retina, some phones)
     // In the future, Planetary.js will handle this by itself (or via a plugin).
     if (window.devicePixelRatio == 2) {
@@ -55,9 +56,39 @@
       context = canvas.getContext('2d');
       context.scale(2, 2);
     }
+    
+    // Event listener for clicking on pings
+    canvas.addEventListener('click', function(event) {
+      // Get the [longitude, latitude] from the click position
+      const coords = globe.projection.invert([event.offsetX, event.offsetY]);
+    
+      // Handle the click action (e.g., showing a modal with recipe info)
+      handlePingClick(coords);
+    });
+    
+    function handlePingClick([lng, lat]) {
+      console.log(`User clicked at longitude: ${lng}, latitude: ${lat}`);
+    
+      // Here, you would show your modal or interact with your recipes
+      // For example:
+      showModalWithRecipe(lng, lat);
+    }
+    
+    // Function to show the modal with coffee recipe details (you can expand it)
+    function showModalWithRecipe(lng, lat) {
+      // Replace this logic with your specific implementation
+      const modal = document.getElementById('recipeModal'); // Ensure this ID exists in your HTML
+      modal.innerHTML = `
+        <h2>Coffee Recipe</h2>
+        <p>A delightful coffee recipe from the region near longitude ${lng.toFixed(2)} and latitude ${lat.toFixed(2)}!</p>
+        <a href="link-to-recipe.html" target="_blank">View Full Recipe</a>
+      `;
+      modal.style.display = 'block';
+    }
+    
     // Draw that globe!
     globe.draw(canvas);
-  
+      
     // This plugin will automatically rotate the globe around its vertical
     // axis a configured number of degrees every second.
     function autorotate(degPerSec) {
