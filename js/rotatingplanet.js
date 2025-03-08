@@ -1,7 +1,7 @@
 (function() {
     var globe = planetaryjs.planet();
     // Load our custom `autorotate` plugin; see below.
-    globe.loadPlugin(autorotate(10));
+    globe.loadPlugin(autorotate(5));
     // The `earth` plugin draws the oceans and the land; it's actually
     // a combination of several separate built-in plugins.
     //
@@ -9,13 +9,13 @@
     // (world-110m-withlakes.json) so we can render lakes.
     globe.loadPlugin(planetaryjs.plugins.earth({
       topojson: { file:   '/world-110m-withlakes.json' },
-      oceans:   { fill:   '#000080' },
-      land:     { fill:   '#339966' },
-      borders:  { stroke: '#008000' }
+      oceans:   { fill:   '#3B2F2F' },
+      land:     { fill:   '#C8A165' },
+      borders:  { stroke: '#4D2B1F' }
     }));
     // Load our custom `lakes` plugin to draw lakes; see below.
     globe.loadPlugin(lakes({
-      fill: '#000080'
+      fill: '#3B2F2F'
     }));
     // The `pings` plugin draws animated pings on the globe.
     globe.loadPlugin(planetaryjs.plugins.pings());
@@ -47,17 +47,80 @@
     }, 150);
   
     var canvas = document.getElementById('rotatingGlobe');
-    // Special code to handle high-density displays (e.g. retina, some phones)
-    // In the future, Planetary.js will handle this by itself (or via a plugin).
-    if (window.devicePixelRatio == 2) {
-      canvas.width = 800;
-      canvas.height = 800;
-      context = canvas.getContext('2d');
-      context.scale(2, 2);
-    }
-    // Draw that globe!
-    globe.draw(canvas);
+
+// Special code to handle high-density displays (e.g. retina, some phones)
+// In the future, Planetary.js will handle this by itself (or via a plugin).
+if (window.devicePixelRatio == 2) {
+  canvas.width = 800;
+  canvas.height = 800;
+  var context = canvas.getContext('2d');
+  context.scale(2, 2);
+}
+
+// Variables to help distinguish a click from a drag
+var mouseDownPos = null;
+var clickThreshold = 5; // pixels
+
+// Add mousedown and mouseup listeners to detect a click
+canvas.addEventListener('mousedown', function(event) {
+  mouseDownPos = [event.offsetX, event.offsetY];
+});
+
+canvas.addEventListener('mouseup', function(event) {
+  if (!mouseDownPos) return;
   
+  var dx = event.offsetX - mouseDownPos[0];
+  var dy = event.offsetY - mouseDownPos[1];
+  
+  if (Math.sqrt(dx * dx + dy * dy) < clickThreshold) {
+    // Convert the click position into geographic coordinates
+    const coords = globe.projection.invert([event.offsetX, event.offsetY]);
+    // Process the click as a ping selection
+    handlePingClick(coords);
+  }
+  mouseDownPos = null;
+});
+
+// Function to process the ping click
+function handlePingClick([lng, lat]) {
+  console.log(`User clicked at longitude: ${lng}, latitude: ${lat}`);
+  // Here, you would look up the region based on [lng, lat] and select the corresponding recipe.
+  // For now, we’re simply calling a function to show the modal:
+  showModalWithRecipe(lng, lat);
+}
+
+// Function to show the modal with recipe details
+function showModalWithRecipe(lng, lat) {
+  var modal = document.getElementById('recipeModal');
+  // In a complete implementation, you’d use the lng/lat (or region mapping) to decide what recipe to show.
+  modal.innerHTML = `
+    <h2>Coffee Recipe from Selected Region</h2>
+    <p>Try this amazing coffee recipe from the region near:</p>
+    <p>Longitude: ${lng.toFixed(2)}, Latitude: ${lat.toFixed(2)}</p>
+    <a href="recipe-link.html" target="_blank">View Full Recipe</a>
+  `;
+  modal.style.display = 'block';
+}
+
+// Draw the globe!
+globe.draw(canvas);
+
+
+function autorotate(degPerSec) {
+  // Planetary.js plugins are functions that take a `planet` instance as an argument...
+  return function(planet) {
+    var lastTick = null;
+    var paused = false;
+    planet.plugins.autorotate = {
+      pause:  function() { paused = true;  },
+      resume: function() { paused = false; }
+    };
+    // ... and so on.
+  };
+}
+
+    globe.draw(canvas);
+      
     // This plugin will automatically rotate the globe around its vertical
     // axis a configured number of degrees every second.
     function autorotate(degPerSec) {
