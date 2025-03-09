@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoffeeShoppee</title>
-<link rel="stylesheet" href="\css\styles.css">
+<link rel="stylesheet" href="styles.css">
 
     <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
     <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
-    <script src="js/planetaryjs.min.js"></script>    
+    <script src="js/planetaryjs.min.js"></script>  
+    <!-- <script type="text/javascript" src="/js/planetaryjs.js"></script> -->
+    <script type="text/javascript" src="js/planetaryjs-objects.js"></script>  
    
     
     <style>
@@ -22,8 +24,6 @@
 
 <body class="background">
 
-    
-
     <h1 class="websitename">CoffeeShoppee</h1>
         <div class="container1">
         <p></p>
@@ -34,7 +34,7 @@
             <img src = "images/paint coffee cup with beans.jpg"></image>
         </article>
 
-        <div class="container2"></div> 
+        <div id="recipeModal" class="container2"></div> 
     
 <canvas id="rotatingGlobe" width="400" height="400"></canvas>   
 <script src="js/rotatingplanet.js"></script>         
