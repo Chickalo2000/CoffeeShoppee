@@ -1,117 +1,196 @@
 (function() {
-    var globe = planetaryjs.planet();
-    // Load our custom `autorotate` plugin; see below.
-    globe.loadPlugin(autorotate(10));
-    // The `earth` plugin draws the oceans and the land; it's actually
-    // a combination of several separate built-in plugins.
-    //
-    // Note that we're loading a special TopoJSON file
-    // (world-110m-withlakes.json) so we can render lakes.
-    globe.loadPlugin(planetaryjs.plugins.earth({
-      topojson: { file:   '/world-110m-withlakes.json' },
-      oceans:   { fill:   '#000080' },
-      land:     { fill:   '#339966' },
-      borders:  { stroke: '#008000' }
-    }));
-    // Load our custom `lakes` plugin to draw lakes; see below.
-    globe.loadPlugin(lakes({
-      fill: '#000080'
-    }));
-    // The `pings` plugin draws animated pings on the globe.
-    globe.loadPlugin(planetaryjs.plugins.pings());
-    // The `zoom` and `drag` plugins enable
-    // manipulating the globe with the mouse.
-    globe.loadPlugin(planetaryjs.plugins.zoom({
-      scaleExtent: [100, 300]
-    }));
-    globe.loadPlugin(planetaryjs.plugins.drag({
-      // Dragging the globe should pause the
-      // automatic rotation until we release the mouse.
-      onDragStart: function() {
-        this.plugins.autorotate.pause();
-      },
-      onDragEnd: function() {
-        this.plugins.autorotate.resume();
-      }
-    }));
-    // Set up the globe's initial scale, offset, and rotation.
-    globe.projection.scale(175).translate([175, 175]).rotate([0, -10, 0]);
-  
-    // Every few hundred milliseconds, we'll draw another random ping.
-    var colors = ['red', 'yellow', 'white', 'orange', 'green', 'cyan', 'pink'];
-    setInterval(function() {
-      var lat = Math.random() * 170 - 85;
-      var lng = Math.random() * 360 - 180;
-      var color = colors[Math.floor(Math.random() * colors.length)];
-      globe.plugins.pings.add(lng, lat, { color: color, ttl: 2000, angle: Math.random() * 10 });
-    }, 150);
-  
-    var canvas = document.getElementById('rotatingGlobe');
-    // Special code to handle high-density displays (e.g. retina, some phones)
-    // In the future, Planetary.js will handle this by itself (or via a plugin).
-    if (window.devicePixelRatio == 2) {
-      canvas.width = 800;
-      canvas.height = 800;
-      context = canvas.getContext('2d');
-      context.scale(2, 2);
+  // Create a new Planetary.js planet instance.
+  var globe = planetaryjs.planet();
+
+  // Load our custom autorotate plugin with a rotation speed of 4 deg/sec.
+  globe.loadPlugin(autorotate(4));
+
+  // Load the earth plugin which draws oceans, land, and borders.
+  globe.loadPlugin(planetaryjs.plugins.earth({
+    topojson: { file: '/world-110m-withlakes.json' },
+    oceans:   { fill: '#3B2F2F' },
+    land:     { fill: '#C8A165' },
+    borders:  { stroke: '#4D2B1F' }
+  }));
+
+  // Load our custom lakes plugin to draw lakes.
+  globe.loadPlugin(lakes({ fill: '#3B2F2F' }));
+
+  // Load the pings plugin (for animated pings on the globe).
+  globe.loadPlugin(planetaryjs.plugins.pings());
+
+  // Load the zoom and drag plugins.
+  globe.loadPlugin(planetaryjs.plugins.zoom({
+    scaleExtent: [130, 130]
+  }));
+  globe.loadPlugin(planetaryjs.plugins.drag({
+    // Pause autorotation while dragging.
+    onDragStart: function() {
+      this.plugins.autorotate.pause();
+    },
+    onDragEnd: function() {
+      this.plugins.autorotate.resume();
     }
-    // Draw that globe!
-    globe.draw(canvas);
-  
-    // This plugin will automatically rotate the globe around its vertical
-    // axis a configured number of degrees every second.
-    function autorotate(degPerSec) {
-      // Planetary.js plugins are functions that take a `planet` instance
-      // as an argument...
-      return function(planet) {
-        var lastTick = null;
-        var paused = false;
-        planet.plugins.autorotate = {
-          pause:  function() { paused = true;  },
-          resume: function() { paused = false; }
-        };
-        // ...and configure hooks into certain pieces of its lifecycle.
-        planet.onDraw(function() {
-          if (paused || !lastTick) {
-            lastTick = new Date();
-          } else {
-            var now = new Date();
-            var delta = now - lastTick;
-            // This plugin uses the built-in projection (provided by D3)
-            // to rotate the globe each time we draw it.
-            var rotation = planet.projection.rotate();
-            rotation[0] += degPerSec * delta / 1000;
-            if (rotation[0] >= 180) rotation[0] -= 360;
-            planet.projection.rotate(rotation);
-            lastTick = now;
-          }
-        });
+  }));
+
+  // Set the globe's initial scale, offset, and rotation.
+  globe.projection.scale(175).translate([175, 175]).rotate([0, -10, 0]);
+
+  // -----------------------------
+  // Fixed Pings for Selected Regions
+  // -----------------------------
+  // Create an array for storing ping data for click detection.
+  var storedPings = [
+    { lng: 174.885971, lat: -40.900557, name: "New Zealand" },
+    { lng: -95.712891, lat: 37.090240, name: "United States" },
+    { lng: -10.940835, lat: 20.939444, name: "Mauritania" },
+    { lng: 35.243322, lat: 38.963745, name: "Turkey" },
+    { lng: 23.881275, lat: 55.169438, name: "Lithuania" },
+    { lng: 101.975766, lat: 4.210484, name: "Malaysia" },
+    { lng: 36.238414, lat: 30.585164, name: "Jordan" },
+    { lng: 45.079162, lat: 23.885942, name: "Saudi Arabia" }
+  ];
+
+
+
+  // Add pings for each region.
+setInterval(() => {
+  storedPings.forEach(function(ping) {
+    if (globe.plugins.pings) {
+      globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
+    } else {
+      console.error("The 'pings' plugin is not available.");
+    }
+  }); 
+}, 3000);
+
+
+
+  // -----------------------------
+  // Set up the canvas.
+  // -----------------------------
+  var canvas = document.getElementById('rotatingGlobe');
+
+  // Handle high-density (retina) displays.
+  if (window.devicePixelRatio == 2) {
+    canvas.width = 800;
+    canvas.height = 800;
+    var context = canvas.getContext('2d');
+    context.scale(2, 2);
+  }
+
+  // -----------------------------
+  // Set up mouse event listeners
+  // (to distinguish dragging from clicking)
+  // -----------------------------
+  var mouseDownPos = null;
+  var clickThreshold = 5; // in pixels
+
+  canvas.addEventListener('mousedown', function(event) {
+    mouseDownPos = [event.offsetX, event.offsetY];
+  });
+
+  canvas.addEventListener('mouseup', function(event) {
+    if (!mouseDownPos) return;
+
+    var dx = event.offsetX - mouseDownPos[0];
+    var dy = event.offsetY - mouseDownPos[1];
+
+    if (Math.sqrt(dx * dx + dy * dy) < clickThreshold) {
+      // If the mouse didn't move much, treat it as a click.
+      var coords = globe.projection.invert([event.offsetX, event.offsetY]);
+      handlePingClick(coords);
+    }
+    mouseDownPos = null;
+  });
+
+  // -----------------------------
+  // Handle a ping click.
+  // -----------------------------
+  // This function checks if a click is close enough to any stored ping.
+  function handlePingClick([clickedLng, clickedLat]) {
+    console.log(`User clicked at: Longitude ${clickedLng}, Latitude ${clickedLat}`);
+    // Define a threshold (in degrees) to decide if a ping was hit.
+    var threshold = 5;
+    for (var i = 0; i < storedPings.length; i++) {
+      var ping = storedPings[i];
+      var dx = clickedLng - ping.lng;
+      var dy = clickedLat - ping.lat;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < threshold) {
+        console.log(`Ping found near: ${ping.name}`);
+        showModalWithRecipe(ping);
+        return;
+      }
+    }
+    console.log("No ping near the clicked position.");
+  }
+
+  // -----------------------------
+  // Display the modal with the coffee recipe.
+  // -----------------------------
+  function showModalWithRecipe(ping) {
+    var modal = document.getElementById('recipeModal'); // Make sure this exists in your HTML
+    modal.innerHTML = `
+      <h2>Coffee Recipe from ${ping.name}</h2>
+      <p>Region near:</p>
+      <p>Longitude: ${ping.lng.toFixed(2)}, Latitude: ${ping.lat.toFixed(2)}</p>
+      <a href="recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html" target="_blank">View Full Recipe</a>
+    `;
+    modal.style.display = 'block';
+  }
+
+  // -----------------------------
+  // Draw the globe!
+  // -----------------------------
+  globe.draw(canvas);
+
+  // -----------------------------
+  // Plugin definitions.
+  // -----------------------------
+
+  // Autorotate plugin: rotates the globe by a specified number of degrees per second.
+  function autorotate(degPerSec) {
+    return function(planet) {
+      var lastTick = null;
+      var paused = false;
+      planet.plugins.autorotate = {
+        pause: function() { paused = true; },
+        resume: function() { paused = false; }
       };
+      planet.onDraw(function() {
+        if (paused || !lastTick) {
+          lastTick = new Date();
+        } else {
+          var now = new Date();
+          var delta = now - lastTick;
+          var rotation = planet.projection.rotate();
+          rotation[0] += degPerSec * delta / 1000;
+          if (rotation[0] >= 180) rotation[0] -= 360;
+          planet.projection.rotate(rotation);
+          lastTick = now;
+        }
+      });
     };
-  
-    // This plugin takes lake data from the special
-    // TopoJSON we're loading and draws them on the map.
-    function lakes(options) {
-      options = options || {};
-      var lakes = null;
-  
-      return function(planet) {
-        planet.onInit(function() {
-          // We can access the data loaded from the TopoJSON plugin
-          // on its namespace on `planet.plugins`. We're loading a custom
-          // TopoJSON file with an object called "ne_110m_lakes".
-          var world = planet.plugins.topojson.world;
-          lakes = topojson.feature(world, world.objects.ne_110m_lakes);
+  }
+
+  // Lakes plugin: draws lakes from the TopoJSON file.
+  function lakes(options) {
+    options = options || {};
+    var lakesData = null;
+    return function(planet) {
+      planet.onInit(function() {
+        var world = planet.plugins.topojson.world;
+        lakesData = topojson.feature(world, world.objects.ne_110m_lakes);
+      });
+      planet.onDraw(function() {
+        planet.withSavedContext(function(context) {
+          context.beginPath();
+          planet.path.context(context)(lakesData);
+          context.fillStyle = options.fill || 'black';
+          context.fill();
         });
-  
-        planet.onDraw(function() {
-          planet.withSavedContext(function(context) {
-            context.beginPath();
-            planet.path.context(context)(lakes);
-            context.fillStyle = options.fill || 'black';
-            context.fill();
-          });
-        });
-      };
+      });
     };
-  })();
+  }
+})();

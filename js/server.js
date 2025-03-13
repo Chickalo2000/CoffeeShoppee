@@ -2,7 +2,7 @@ const express = require('express'); //Express is server
 const mongoose = require('mongoose'); //Mongoose is a library that helps us interact with MongoDB, tools to use
 
 require('dotenv').config(); //dotenv is a library that helps us read environment variables from a .env file
-const CoffeeRecipe = require('./models/CoffeeRecipe'); //importing the CoffeeRecipe model
+const CoffeeRecipe = require('../server/models/CoffeeRecipe'); //importing the CoffeeRecipe model
 
 const app = express(); //creating an express app, different server functionalities 
 const port = process.env.PORT || 3000; //setting the port , different channels

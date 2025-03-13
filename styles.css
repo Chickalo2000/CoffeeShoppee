@@ -1,11 +1,14 @@
-@import url("../css/reset.css");
+@import url("../css/ reset.css");
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     background-color: #f5d20a;
     background: url('images/your-background-image.jpg') no-repeat center center fixed;
+=======
+>>>>>>> e52afc33e9732f5ae962ddcbd6765ce82c18b336
     background-size: cover;
   }
   
@@ -16,16 +19,34 @@ body {
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
+    
   }
   
   .container1 {
-    background-color: black;
+    background-color: rgb(205, 39, 58);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+    
+    
   }
+
+  
+
+
+
+      
+#rotatingGlobe {
+    position: absolute; /* Positions the globe relative to the container */
+    top: 50%; /* Adjusts to vertically align the globe inside the cup */
+    left: 50%; /* Adjusts to horizontally align the globe inside the cup */
+    transform: translate(-50%, -50%); /* Centers the globe */
+    width: 40%; /* Adjusts size relative to the coffee cup */
+    height: auto; /* Maintains aspect ratio */
+}
+
   
   .container2 {
     background-color: #f5d20a;
@@ -43,13 +64,7 @@ body {
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
   }
   
-  .globe {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 25px;
-    margin-top: 20px;
-  }
+
   
   @media (max-width: 600px) {
     .background {
@@ -63,5 +78,8 @@ body {
     .globe {
       height: 200px;
     }
+
+
+    
   }
   
