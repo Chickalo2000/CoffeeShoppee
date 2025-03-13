@@ -1,4 +1,4 @@
-@import url("../css/reset.css");
+@import url("../css/ reset.css");
 
 body {
     font-family: Arial, sans-serif;
@@ -14,6 +14,7 @@ body {
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
+    
   }
   
   .container1 {
@@ -23,7 +24,24 @@ body {
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+    
+    
   }
+
+  
+
+
+
+      
+#rotatingGlobe {
+    position: absolute; /* Positions the globe relative to the container */
+    top: 50%; /* Adjusts to vertically align the globe inside the cup */
+    left: 50%; /* Adjusts to horizontally align the globe inside the cup */
+    transform: translate(-50%, -50%); /* Centers the globe */
+    width: 40%; /* Adjusts size relative to the coffee cup */
+    height: auto; /* Maintains aspect ratio */
+}
+
   
   .container2 {
     background-color: #f5d20a;
@@ -55,5 +73,8 @@ body {
     .globe {
       height: 200px;
     }
+
+
+    
   }
   

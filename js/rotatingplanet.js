@@ -21,7 +21,7 @@
 
   // Load the zoom and drag plugins.
   globe.loadPlugin(planetaryjs.plugins.zoom({
-    scaleExtent: [100, 300]
+    scaleExtent: [130, 130]
   }));
   globe.loadPlugin(planetaryjs.plugins.drag({
     // Pause autorotation while dragging.
