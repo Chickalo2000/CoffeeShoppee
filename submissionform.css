@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5d20a;
+}
+
+#form-title {
+    font-size: 2em;
+    font-style: normal;
+    color: #332c01;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#personal-info {
+    background-color: #eecd14ce;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#recipe-info {
+    background-color: #f5d20a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
