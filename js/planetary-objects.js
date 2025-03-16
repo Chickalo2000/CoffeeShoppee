@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoffeeShoppee</title>
-
-     <link rel="stylesheet" href="styles.css">
-    
-
-
-
-
-    <script type='text/javascript' src='http://d3js.org/d3.v3.min.js'></script>
-    <script type='text/javascript' src='http://d3js.org/topojson.v1.min.js'></script>
-    <script src="js/planetaryjs.min.js"></script>  
-  
-    <!-- <script type="text/javascript" src="./planetaryjs-objects.js"></script> -->
-  <script> planetaryjs.plugins.objects = function(config) {
+planetaryjs.plugins.objects = function(config) {
     var objects = [];
     config = config || {};
 console.log("ping")
@@ -122,43 +104,4 @@ console.log("ping")
         });
       });
     };
-  };</script>
-    
-    <style>
-        #rotatingGlobe {
-            width: 400px;
-            height: 400px;
-            cursor: move;
-        }
-    </style>
-</head>
-
-<body class="background">
-    
-
-    <h1 class="websitename">CoffeeShoppee</h1>
-        <div class="container1">
-            
-
-
-       
-
-        <article>
-            <img src = "images\image.webp"></image>
-        </article>
-
-        <div id="recipeModal" class="container2"></div> 
-    
-<canvas id="rotatingGlobe" width="400" height="400"></canvas> 
-
-</div>
-        
-<script src="js/rotatingplanet.js"></script>         
-
-</body>
-
-<footer>
-    <div id="socialMedia"></div>
-</footer>
-
-</html>
+  };

@@ -1,10 +1,10 @@
 (function() {
   // Create a new Planetary.js planet instance.
   var globe = planetaryjs.planet();
-
   // Load our custom autorotate plugin with a rotation speed of 4 deg/sec.
   globe.loadPlugin(autorotate(4));
-
+  
+  
   // Load the earth plugin which draws oceans, land, and borders.
   globe.loadPlugin(planetaryjs.plugins.earth({
     topojson: { file: '/world-110m-withlakes.json' },
@@ -12,17 +12,18 @@
     land:     { fill: '#C8A165' },
     borders:  { stroke: '#4D2B1F' }
   }));
-
+  
   // Load our custom lakes plugin to draw lakes.
   globe.loadPlugin(lakes({ fill: '#3B2F2F' }));
-
+  
   // Load the pings plugin (for animated pings on the globe).
   globe.loadPlugin(planetaryjs.plugins.pings());
-
+  
+  globe.loadPlugin(planetaryjs.plugins.objects());	//line test	change planet to globe
   // Load the zoom and drag plugins.
-  globe.loadPlugin(planetaryjs.plugins.zoom({
-    scaleExtent: [130, 130]
-  }));
+  //globe.loadPlugin(planetaryjs.plugins.zoom({
+ //   scaleExtent: [300, 300]
+  //}));
   globe.loadPlugin(planetaryjs.plugins.drag({
     // Pause autorotation while dragging.
     onDragStart: function() {
@@ -48,7 +49,7 @@
     { lng: 23.881275, lat: 55.169438, name: "Lithuania" },
     { lng: 101.975766, lat: 4.210484, name: "Malaysia" },
     { lng: 36.238414, lat: 30.585164, name: "Jordan" },
-    { lng: 45.079162, lat: 23.885942, name: "Saudi Arabia" }
+    { lng: 45.079162, lat: 23.885942, name: "Saudi Arabia",url:"<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QFg-_Bg_TQo?si=VEeDq5dpWute5oWt\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>" }
   ];
 
 
@@ -58,8 +59,8 @@ setInterval(() => {
   storedPings.forEach(function(ping) {
     if (globe.plugins.pings) {
 
-      globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
-
+     // globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
+globe.plugins.objects.add (ping.lng, ping.lat,{ imagesrc:"images/the coffee bean.jpg" })
     } else {
       console.error("The 'pings' plugin is not available.");
     }
@@ -135,11 +136,13 @@ setInterval(() => {
   // -----------------------------
   function showModalWithRecipe(ping) {
     var modal = document.getElementById('recipeModal'); // Make sure this exists in your HTML
+    const url =ping.url ? ping.url : "recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html"
     modal.innerHTML = `
       <h2>Coffee Recipe from ${ping.name}</h2>
-      <p>Region near:</p>
-      <p>Longitude: ${ping.lng.toFixed(2)}, Latitude: ${ping.lat.toFixed(2)}</p>
-      <a href="recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html" target="_blank">View Full Recipe</a>
+      <p></p>
+ <!--<p>Longitude: ${ping.lng.toFixed(2)}, Latitude: ${ping.lat.toFixed(2)}</p> -->
+      <!--<a href=${url} target="_blank">View Full Recipe</a>-->
+      ${url}
     `;
     modal.style.display = 'block';
   }
@@ -148,6 +151,8 @@ setInterval(() => {
   // Draw the globe!
   // -----------------------------
   globe.draw(canvas);
+  globe.plugins.objects.add(-1.3167103, 50.6927176, { imagesrc:"images/the coffee bean.jpg" }); //line test change from planet to globe
+  console.log(globe.plugins)
 
 
   // -----------------------------
