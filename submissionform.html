@@ -7,28 +7,33 @@
     <link rel="stylesheet" href="submissionform.css">
 </head>
 <body>
-    <h1>Coffee Recipe Sumbission</h1>
+    <h1 id="form-title">Coffee Recipe Submission</h1>
     <p>Please fill out this form to submit your own coffee recipe</p>
     <form action="submission.php" method="post">
-        <fieldset>
+        <fieldset id="personal-info">
+            <legend>Personal Information</legend>
             <label for="first-name">First Name: <input id="first-name" type="text" required></label>
             <label for="last-name">Last Name: <input id="first-name" type="text" required></label>
             <label for="email">Email Address: <input id="email address" type="text" required></label>
         </fieldset>
-        <fieldset>
-            <label for="recipe-name">Recipe Name: <input id="recipe-name" type="text" required></label>
+        <fieldset id="recipe-info">
+            <legend>Recipe Information</legend>
+            <label for="recipe-name">Recipe Name: <input id="recipe-name" type="text" required>
+            </label>
             <label for="recipe-type">Recipe Type: <select id="recipe-type" required>
                 <option value="hot">Hot</option>
                 <option value="cold">Cold</option>
                 <option value="frozen">Frozen</option>
+            </select></label>
             <label for="recipe-description">Recipe Description: <textarea id="recipe-description" required></textarea></label>
+
             <label for="recipe-ingredients">Recipe Ingredients: <textarea id="recipe-ingredients" required></textarea></label>
             <label for="recipe-instructions">Recipe Instructions: <textarea id="recipe-instructions" required></textarea></label>
             <label>Upload an image of your coffee: <input type="file" id="corresponding coffee image" for="profile-picture"/></label>
         </fieldset>
         <fieldset>
-            <label for="terms-and-conditions">
-                <input id="terms-and-conditions" type="checkbox" required /> I agree to allow my recipe to get published for others to see.
+            <label>
+                <input id="recipe-submission" type="checkbox" required /> I agree to allow my recipe to be published for others to see.
               </label>
         </fieldset>
         <button type="submit">Submit Recipe</button>
