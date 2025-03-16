@@ -1,4 +1,4 @@
-@import url("../css/ reset.css");
+@import url("../css/reset.css");
 
 body {
     font-family: Arial, sans-serif;
@@ -19,6 +19,7 @@ body {
   
   .container1 {
     background-color: rgb(205, 39, 58);
+    position: relative; /* Set the parent container for relative positioning added test */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +29,11 @@ body {
     
   }
 
+  .container1 img {
+    width: 100%; /* Make the image responsive  added test*/
+    height: auto; /* Maintain aspect ratio   added test*/
+  }
+
   
 
 
@@ -35,10 +41,10 @@ body {
       
 #rotatingGlobe {
     position: absolute; /* Positions the globe relative to the container */
-    top: 50%; /* Adjusts to vertically align the globe inside the cup */
-    left: 50%; /* Adjusts to horizontally align the globe inside the cup */
+    top: 30%; /* Adjusts to vertically align the globe inside the cup */
+    left: 75.4%; /* Adjusts to horizontally align the globe inside the cup */
     transform: translate(-50%, -50%); /* Centers the globe */
-    width: 40%; /* Adjusts size relative to the coffee cup */
+    width: 32%; /* Adjusts size relative to the coffee cup */
     height: auto; /* Maintains aspect ratio */
 }
 
@@ -68,6 +74,14 @@ body {
       padding: 90px;
       border-radius: 90px;
       box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
+    }
+
+    #rotatingGlobe {
+      width: 70%; /* Resize the globe on smaller screens added test */
+    }
+
+    .container1 img {
+      width: 90%; /* Adjust image size for mobile added test */
     }
   
     .globe {
