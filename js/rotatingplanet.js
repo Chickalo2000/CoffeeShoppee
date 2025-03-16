@@ -57,12 +57,16 @@
 setInterval(() => {
   storedPings.forEach(function(ping) {
     if (globe.plugins.pings) {
+
       globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
+
     } else {
       console.error("The 'pings' plugin is not available.");
     }
   }); 
-}, 3000);
+
+}, 1500);
+
 
 
 
@@ -144,6 +148,7 @@ setInterval(() => {
   // Draw the globe!
   // -----------------------------
   globe.draw(canvas);
+
 
   // -----------------------------
   // Plugin definitions.

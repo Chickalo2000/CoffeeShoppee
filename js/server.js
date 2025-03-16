@@ -5,7 +5,9 @@ require('dotenv').config(); //dotenv is a library that helps us read environment
 const CoffeeRecipe = require('../server/models/CoffeeRecipe'); //importing the CoffeeRecipe model
 
 const app = express(); //creating an express app, different server functionalities 
-const port = process.env.PORT || 3000; //setting the port , different channels
+
+const port = process.env.PORT || 3000; //setting the port , difference channels
+
 
 app.use(express.json()); // makes it understand json
 
