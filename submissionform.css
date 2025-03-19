@@ -46,3 +46,16 @@ input[type="text"], input[type="email"], input[type="number"], textarea {
     flex-direction: column;
     margin-top: 20px;
 }
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    form {
+        width: 100%
+    }
+    input[type="text"], input[type="email"] {
+        font-size: 12px
+
+    }
+}
