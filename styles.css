@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     background-size: cover;
+    color: #f5d20a;
   }
   
   .websitename {
@@ -18,38 +19,56 @@ body {
   }
   
   .container1 {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    align-items: center;
     background-color: rgb(205, 39, 58);
     position: relative; /* Set the parent container for relative positioning added test */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  article image {
+    width: 100%; /* Make the image responsive  added test */
+    height: auto; /* Maintain aspect ratio   added test */
+  }
+
+    /* justify-content:  center;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 20px;*/
     
     
   }
 
-  .container1 img {
-    width: 100%; /* Make the image responsive  added test*/
-    height: auto; /* Maintain aspect ratio   added test*/
-  }
-
+ /* .container1 img {
+    width: 100%; /* Make the image responsive  added test
+  /* height: auto; Maintain aspect ratio   added test*/
   
 
 
+#recipeModel {
+  grid-column: span 2;
+}  
 
-      
+
+
 #rotatingGlobe {
-    position: absolute; /* Positions the globe relative to the container */
-    top: 30%; /* Adjusts to vertically align the globe inside the cup */
-    left: 75.4%; /* Adjusts to horizontally align the globe inside the cup */
-    transform: translate(-50%, -50%); /* Centers the globe */
-    width: 32%; /* Adjusts size relative to the coffee cup */
-    height: auto; /* Maintains aspect ratio */
+    max-width: 100%;
+    width: 400px;
+    grid-column: 3;
+    grid-row: 1 / span 2; 
+    position: absolute;  /*Positions the globe relative to the container */
+    top: 30%; /*Adjusts to vertically align the globe inside the cup */
+    left: 75.4%; /*Adjusts to horizontally align the globe inside the cup */
+    transform: translate(-50%, -50%); /* Centers the globe*/
+    z-index: 1; /* Ensures the globe is on top of the coffee cup */
+    width: 32%;  /*Adjusts size relative to the coffee cup */
+    height: auto; /*Maintains aspect ratio */
 }
 
   
-  .container2 {
+/*  .container2 {
     background-color: #f5d20a;
     display: flex;
     justify-content: center;
@@ -63,7 +82,7 @@ body {
     padding: 90px;
     border-radius: 90px;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
-  }
+  } 
   
 
   
@@ -78,10 +97,10 @@ body {
 
     #rotatingGlobe {
       width: 70%; /* Resize the globe on smaller screens added test */
-    }
+    
 
     .container1 img {
-      width: 90%; /* Adjust image size for mobile added test */
+      width: 90%;     /* Adjust image size for mobile added test */
     }
   
     .globe {
@@ -90,5 +109,5 @@ body {
 
 
     
-  }
+
   
