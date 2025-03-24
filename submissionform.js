@@ -1,13 +1,17 @@
-"use strict"
+"use strict";
 
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const pantryUrl = process.env.PANTRY_API_URL;
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post('/submit-form', async (req, res) => {
     const formData = req.body;
@@ -18,7 +22,7 @@ app.post('/submit-form', async (req, res) => {
         );
         res.status(200).send("Form data saved successfully");
     } catch (error) {
-        console.error("Error saving to Pantry".error);
+        console.error("Error saving to Pantry", error);
         res.status(500).send("Error saving data");
     }
 });
@@ -26,4 +30,5 @@ app.post('/submit-form', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
 
