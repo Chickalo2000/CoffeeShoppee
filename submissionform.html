@@ -9,12 +9,12 @@
 <body>
     <h1 id="form-title">Coffee Recipe Submission</h1>
     <p>Please fill out this form to submit your own coffee recipe</p>
-    <form action="submission" method="post">
+    <form action="http://localhost:3000/submit-form" method="post">
         <fieldset id="personal-info">
             <legend>Personal Information</legend>
             <label for="first-name">First Name: <input id="first-name" type="text" required></label>
             <label for="last-name">Last Name: <input id="last-name" type="text" required></label>
-            <label for="email">Email Address: <input id="email address" type="text" required></label>
+            <label for="email">Email Address: <input id="email" type="text" required></label>
         </fieldset>
         <fieldset id="recipe-info">
             <legend>Recipe Information</legend>
@@ -37,5 +37,6 @@
               </label>
         </fieldset>
         <button type="submit">Submit Recipe</button>
+    <script src="submissionform.js"></script>  
 </body>
 </html>
