@@ -18,7 +18,7 @@ app.post('/submit-form', async (req, res) => {
     console.log("Form Data:", formData);
 
     try { 
-        const response = await axios.post('https://getpantry.cloud/apiv1/pantry/28486b5b-2c1c-4633-9b7d-035657f988cc/basket/coffeerecipesubmissions', formData
+        const response = await axios.post('https://getpantry.cloud/apiv1/pantry/28486b5b-2c1c-4633-9b7d-035657f988cc/basket/recipeSubmissions', formData
         );
         res.status(200).send("Form data saved successfully");
     } catch (error) {
