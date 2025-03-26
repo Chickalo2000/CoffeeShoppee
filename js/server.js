@@ -38,4 +38,3 @@ app.post('/api/coffee-recipes', async (req, res) => {
 app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
 }); // server is listening on the port, and logs that it is running on that port
-
