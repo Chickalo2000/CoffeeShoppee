@@ -9,7 +9,7 @@
 <body>
     <h1 id="form-title">Coffee Recipe Submission</h1>
     <p>Please fill out this form to submit your own coffee recipe</p>
-    </form action="http://localhost:3000/submit-form" method="POST">
+   <form method="post">
         <fieldset id="personal-info">
             <legend>Personal Information</legend>
             <label for="first-name">First Name: <input id="first-name" type="text" required></label>
@@ -30,7 +30,7 @@
 
 
             <label for="recipe-ingredients">Recipe Ingredients: <textarea id="recipe-ingredients" required></textarea></label>
-            <label for="recipe-instructions">Recipe Instructions: <textarea id="recipe-instructions" required></textarea></label>
+            <label for="recipe-instructions">Recipe Instructions: <textarea id="recipe-instructions" required></textarea></label
             <label>Upload an image of your coffee: <input type="file" id="coffeeimage"/></label>
         </fieldset>
         <fieldset>
@@ -38,8 +38,7 @@
                 <input id="recipe-submission" type="checkbox" required/> I agree to allow my recipe to be published for others to see.
               </label>
         </fieldset>
-        <button type="submit">Submit Recipe</button>
-
-    <script src="server/models/pantry.js"></script>
+        <button type="submit">Submit Recipe</button
+    <script src="submissionformfe.js"></script>  
 </body>
 </html>
