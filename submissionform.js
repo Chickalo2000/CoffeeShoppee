@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
+app.use(cors());
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,6 +13,7 @@ const pantryUrl = process.env.PANTRY_API_URL;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.post('/submit-form', async (req, res) => {
     const formData = req.body;
