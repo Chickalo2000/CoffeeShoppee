@@ -4,101 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoffeeShoppee</title>
-    
     <link rel="stylesheet" href="styles.css">
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="js/planetaryjs.min.js"></script>
-
-    <style>
-        #rotatingGlobe {
-            width: 400px;
-            height: 400px;
-            cursor: move;
-        }
-    </style>
-
-    <script>
-        planetaryjs.plugins.objects = function(config) {
-            var objects = [];
-            config = config || {};
-            console.log("ping");
-
-            const addObject = (lng, lat, options = {}) => {
-                options.speed = options.speed || config.speed || 0;
-                options.imagesrc = options.imagesrc || config.imagesrc || "";
-                options.imagewidth = options.imagewidth || config.imagewidth || 50;
-                options.imageheight = options.imageheight || config.imageheight || 50;
-                options.fade = options.fade || config.fade || false;
-
-                objects.push({
-                    time: new Date(),
-                    options,
-                    lng: config.latitudeFirst ? lat : lng,
-                    lat: config.latitudeFirst ? lng : lat
-                });
-            };
-
-            const drawObjects = (planet, context, now) => {
-                objects = objects.map(object => {
-                    const timeChange = now - object.time;
-                    drawObject(planet, context, timeChange, object);
-                    return object;
-                });
-            };
-
-            const drawObject = (planet, context, timeChange, object) => {
-                const newLng = object.options.speed > 0 
-                    ? object.lng + (timeChange * object.options.speed) / 100 
-                    : object.lng;
-
-                const coords = planet.projection([newLng, object.lat]);
-                const img = new Image();
-                img.src = object.options.imagesrc;
-
-                const geoAngle = d3.geo.distance(
-                    [newLng, object.lat],
-                    [-planet.projection.rotate()[0], -planet.projection.rotate()[1]]
-                );
-
-                if (geoAngle > 1.57) return; // Ignore objects behind the sphere
-
-                if (object.options.fade) {
-                    const closeness = 1.57 - geoAngle;
-                    context.globalAlpha = closeness < 0.1 ? closeness * 10 : 1;
-                }
-
-                context.drawImage(
-                    img, 
-                    coords[0] - object.options.imagewidth / 2,
-                    coords[1] - object.options.imageheight / 2,
-                    object.options.imagewidth,
-                    object.options.imageheight
-                );
-
-                context.globalAlpha = 1; // Reset transparency
-            };
-
-            return planet => {
-                planet.plugins.objects = { add: addObject, objectList: objects };
-                planet.onDraw(() => {
-                    planet.withSavedContext(context => drawObjects(planet, context, new Date()));
-                });
-            };
-        };
-    </script>
 </head>
 
+<header>
+    <div class="header">
+        <h1 class="websitename">CoffeeShoppee</h1>
+        <div class="planet-text">
+            <h2>Welcome to CoffeeShoppee</h2>
+            <p>Your one-stop destination for all things coffee! Explore our collection of unique recipes from around the world.</p>
+        </div>
+
 <body class="background">
-    <h1 class="websitename">CoffeeShoppee</h1>
-    <div class="container1">
+    <div class="container1"></div>
+    
+    <div class="container2">
+        <div id="recipeModal">
+            <h2>Recipe Details</h2>
+            <p>Here’s the description of the recipe.</p>
+            <button>Close</button>
+        </div>
+        
+    
+    </div>
+      
+    
 
 
     <script src="js/rotatingplanet.js"></script>
+    <script src="js/planetaryjs.min.js"></script>
+    <script src="js/planetaryjs.js"></script>    
 </body>
 
 <footer>
-    <div id="socialMedia"></div>
+    <div id="socialMedia">   <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</div></div>
     <div id="submitRecipe">
         <p>Have your own recipe, unique to your culture?  Submit it here.</p>
         <a href="submissionform.html">Submit Recipe</a>

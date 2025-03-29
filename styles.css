@@ -2,9 +2,18 @@
 
 body {
   font-family: Arial, sans-serif;
+  background-color: rgb(205, 39, 58);
+  color: #000; /* Text color */
   margin: 0;
   padding: 0;
   background-size: cover;
+}
+
+.background {
+  background-color:  rgb(205, 39, 58);
+  padding: 90px;
+  border-radius: 90px;
+  box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
 }
 
 .websitename {
@@ -17,12 +26,13 @@ body {
 }
 
 .container1 {
-  background-color: rgb(205, 39, 58);
-  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  margin-top: 10px;
+  background-color: rgb(205, 39, 58);
+  position: relative;
   margin-top: 20px;
   background-image: url('images/image.webp');
   background-size: contain; /* Proportional scaling */
@@ -34,82 +44,83 @@ body {
   margin: 5vh auto; /* Added margin for better positioning */
 }
 
+.container2 {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5d20a;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 
 #recipeModal {
-  display: none; /* Hidden initially */
+  width: 80vw; /* Adjusted width */
+  justify-content: center;
+  background-color: #0a25f5;
+  color: #000;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: none;
   position: fixed;
   top: 20%;
   left: 50%;
-  transform-style: preserve-3d
+  transform-style: preserve-3d;
   transform: translate(-50%, -20%);
-  background-color: white; /* Contrast against background */
-  color: black; /* For legible text */
+  background-color: white; 
+  color: black; 
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid #B62626; /* Matches theme */
+  border: 2px solid #B62626;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Ensure it's above other elements */
+  z-index: 1000; 
   max-width: 80vw;
   max-height: 70vh;
-  overflow-y: auto; /* Scroll if content overflows */
+  overflow-y: auto; 
 }
-
-
-
 
 .container1 img {
   width: 100%; /* Responsive image */
   height: auto; /* Maintain aspect ratio */
 }
 
-#rotatingGlobe {
+*#rotatingGlobe {
   position: absolute;
-  top: 30%; /* Adjusted to center visually */
-  left: 75.4%; /* Fine-tune as necessary */
-  transform: translate(-50%, -50%);
-  width: 32%; /* Adjust size */
+  top: 30%; 
+}
+
+#rotatingGlobe {
+  width: 400px;
+  height: 400px;
+  cursor: move;
+}
+
+#rotatingGlobe img {
+  width: 100%; /* Responsive image */
   height: auto; /* Maintain aspect ratio */
 }
-
-
-.container2 {
-  background-color: #f5d20a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
+#rotatingGlobe:hover {
+  animation: rotate 10s linear infinite;
 }
 
-.background {
-  background-color: rgb(255, 255, 255);
-  padding: 90px;
-  border-radius: 90px;
-  box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
-}
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {}
   .background {
     background-image: url('images/Coffeebeans.jpg');
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(210, 112, 14);
     padding: 90px;
     border-radius: 90px;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
-  }
-  @media (max-width: 600px) {
+
     #rotatingGlobe {
-        width: 90%; /* Larger for small screens */
-        height: auto;
-    }
+        width: 90%; /* Larger for small screens 
+        height:auto;*/
+    /*
     .container1 {
-        width: 100%; /* Take up full width */
-        height: auto; /* Let content flow naturally */
+        width: 100%; /* Take up full width 
+        height: auto; /* Let content flow naturally 
     }
     #recipeModal {
-        top: 10%; /* Closer to the top for mobile */
+        top: 10%; /* Closer to the top for mobile 
         max-width: 90vw;
         max-height: 60vh; /* Ensure modal doesn't dominate */
-    }
-}
-
-}
+  
