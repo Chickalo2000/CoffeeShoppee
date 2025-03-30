@@ -1,3 +1,4 @@
+
 (function() {
   // Create a new Planetary.js planet instance.
   var globe = planetaryjs.planet();
@@ -22,7 +23,7 @@
   globe.loadPlugin(planetaryjs.plugins.objects());	//line test	change planet to globe
   // Load the zoom and drag plugins.
   //globe.loadPlugin(planetaryjs.plugins.zoom({
-    // scaleExtent: [300, 300]
+ //   scaleExtent: [300, 300]
   //}));
   globe.loadPlugin(planetaryjs.plugins.drag({
     // Pause autorotation while dragging.
@@ -35,7 +36,7 @@
   }));
 
   // Set the globe's initial scale, offset, and rotation.
-  globe.projection.scale(210).translate([200, 200]).rotate([0, -10, 0]);
+  globe.projection.scale(130).translate([175, 175]).rotate([0, -10, 0]);
 
   // -----------------------------
   // Fixed Pings for Selected Regions
@@ -57,18 +58,22 @@
 
 
   // Add pings for each region.
-setInterval(() => {
-  storedPings.forEach(function(ping) {
-    if (globe.plugins.pings) {
-
-     // globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
-     globe.plugins.objects.add(ping.lng, ping.lat, { imagesrc: "images/what transp bean.webp" }); // image ping click a bean
-    } else {
-      console.error("The 'pings' plugin is not available.");
-    }
-  }); 
-
-}, 1500);
+  setInterval(() => {
+    storedPings.forEach(function(ping) {
+      console.log(`Ping added: ${ping.name}, Longitude: ${ping.lng}, Latitude: ${ping.lat}`); 
+      if (globe.plugins.pings) {
+        // Adding a smaller image to each ping
+        globe.plugins.objects.add(ping.lng, ping.lat, { 
+          imagesrc: "images/what transp bean.webp", 
+          imagewidth: 15, // Adjust the width of the image
+          imageheight: 15 // Adjust the height of the image
+        });
+      } else {
+        console.error("The 'pings' plugin is not available.");
+      }
+    }); 
+  }, 1500);
+  
 
 
 
@@ -118,7 +123,7 @@ setInterval(() => {
   function handlePingClick([clickedLng, clickedLat]) {
     console.log(`User clicked at: Longitude ${clickedLng}, Latitude ${clickedLat}`);
     // Define a threshold (in degrees) to decide if a ping was hit.
-    var threshold = 5;
+    var threshold = 50;
     for (var i = 0; i < storedPings.length; i++) {
       var ping = storedPings[i];
       var dx = clickedLng - ping.lng;
@@ -138,16 +143,25 @@ setInterval(() => {
   // -----------------------------
   function showModalWithRecipe(ping) {
     var modal = document.getElementById('recipeModal'); // Make sure this exists in your HTML
-    const url =ping.url ? ping.url : "recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html"
+    const url = ping.url ? ping.url : `recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html`;
+
+    
     modal.innerHTML = `
-      <h2>Coffee Recipe from ${ping.name}</h2>
-      <p></p>
- <!--<p>Longitude: ${ping.lng.toFixed(2)}, Latitude: ${ping.lat.toFixed(2)}</p> -->
-      <!--<a href=${url} target="_blank">View Full Recipe</a>-->
-      ${url}
+    <h2>Coffee Recipe from ${ping.name}</h2>
+    <p></p>
+    ${url}
+    <button id="closeModalBtn" style="margin-top: 10px;">Close</button>
     `;
+    
     modal.style.display = 'block';
-  }
+    
+    // Add event listener to the close button
+    document.getElementById('closeModalBtn').onclick = function() {
+    modal.style.display = 'none';
+    };
+    }
+    
+    
 
   // -----------------------------
   // Draw the globe!

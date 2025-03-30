@@ -93,7 +93,7 @@ body {
     background-image: url('images/Coffeebeans.jpg');
     background-color: rgb(255, 255, 255);
     padding: 90px;
-    border-radius: 90px;
+    border-radius: 90px; 
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.1);
   }
   @media (max-width: 600px) {
