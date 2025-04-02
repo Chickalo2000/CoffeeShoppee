@@ -1,3 +1,4 @@
+
 (function() {
   // Create a new Planetary.js planet instance.
   var globe = planetaryjs.planet();
@@ -8,9 +9,9 @@
   // Load the earth plugin which draws oceans, land, and borders.
   globe.loadPlugin(planetaryjs.plugins.earth({
     topojson: { file: '/world-110m-withlakes.json' },
-    oceans:   { fill: '#3B2F2F' },
-    land:     { fill: '#C8A165' },
-    borders:  { stroke: '#4D2B1F' }
+    oceans:   { fill: '#ca8659 ' },
+    land:     { fill: '#B62626' },
+    borders:  { stroke: '#F5d20a' }
   }));
   
   // Load our custom lakes plugin to draw lakes.
@@ -35,38 +36,44 @@
   }));
 
   // Set the globe's initial scale, offset, and rotation.
-  globe.projection.scale(175).translate([175, 175]).rotate([0, -10, 0]);
+  globe.projection.scale(130).translate([175, 175]).rotate([0, -10, 0]);
 
   // -----------------------------
   // Fixed Pings for Selected Regions
   // -----------------------------
   // Create an array for storing ping data for click detection.
   var storedPings = [
-    { lng: 174.885971, lat: -40.900557, name: "New Zealand" },
-    { lng: -95.712891, lat: 37.090240, name: "United States" },
-    { lng: -10.940835, lat: 20.939444, name: "Mauritania" },
-    { lng: 35.243322, lat: 38.963745, name: "Turkey" },
-    { lng: 23.881275, lat: 55.169438, name: "Lithuania" },
-    { lng: 101.975766, lat: 4.210484, name: "Malaysia" },
-    { lng: 36.238414, lat: 30.585164, name: "Jordan" },
-    { lng: 45.079162, lat: 23.885942, name: "Saudi Arabia",url:"<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QFg-_Bg_TQo?si=VEeDq5dpWute5oWt\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>" }
+    { lng: 174.885971, lat: -40.900557, name: "New Zealand", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/gRFNPn6sG_Y?si=5yOdzXgFzSmmdbpz' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: -95.712891, lat: 37.090240, name: "United States", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/kySG70ZqE4o?si=Jl4NcZrA5ekszObg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: 12.56738, lat: 41.87194, name: "Italy", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/LnUSTtyF1rs?si=LicE9XSKjseUT_XO' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: 35.243322, lat: 38.963745, name: "Turkey", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/UghjdGRhCPE?si=v6ZYLY2MlNtm6xr-' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: -8.24389, lat: 53.41291, name: "Ireland", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/example_video' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" },
+    { lng: 101.975766, lat: 4.210484, name: "Malaysia", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/NEz4khlo6a8?si=l2BYLvqVNC_OuO2a' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: 36.238414, lat: 30.585164, name: "Jordan", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/kKgdF376brQ?si=OkVX-aJVNdKno9Rg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: 45.079162, lat: 23.885942, name: "Saudi Arabia", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/QFg-_Bg_TQo?si=VEeDq5dpWute5oWt' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: -51.92528, lat: -14.235004, name: "Brazil", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/C_zZ2NAoa4g?si=raRAC0a7kPjDrbl_' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" },
+    { lng: 108.277199, lat: 14.058324, name: "Vietnam", url: "<iframe width='560' height='315' src='https://www.youtube.com/embed/hrMOikezwg8?si=w4bZcaB8llE6oWy0' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>" }
+
   ];
 
 
-
   // Add pings for each region.
-setInterval(() => {
-  storedPings.forEach(function(ping) {
-    if (globe.plugins.pings) {
-
-     // globe.plugins.pings.add(ping.lng, ping.lat, { color: 'red', ttl: 0 });
-globe.plugins.objects.add (ping.lng, ping.lat,{ imagesrc:"images/the coffee bean.jpg" })
-    } else {
-      console.error("The 'pings' plugin is not available.");
-    }
-  }); 
-
-}, 1500);
+  setInterval(() => {
+    storedPings.forEach(function(ping) {
+      console.log(`Ping added: ${ping.name}, Longitude: ${ping.lng}, Latitude: ${ping.lat}`); 
+      if (globe.plugins.pings) {
+        // Adding a smaller image to each ping
+        globe.plugins.objects.add(ping.lng, ping.lat, { 
+          imagesrc: "images/what transp bean.webp", 
+          imagewidth: 15, // Adjust the width of the image
+          imageheight: 15 // Adjust the height of the image
+        });
+      } else {
+        console.error("The 'pings' plugin is not available.");
+      }
+    }); 
+  }, 1500);
+  
 
 
 
@@ -116,7 +123,7 @@ globe.plugins.objects.add (ping.lng, ping.lat,{ imagesrc:"images/the coffee bean
   function handlePingClick([clickedLng, clickedLat]) {
     console.log(`User clicked at: Longitude ${clickedLng}, Latitude ${clickedLat}`);
     // Define a threshold (in degrees) to decide if a ping was hit.
-    var threshold = 5;
+    var threshold = 50;
     for (var i = 0; i < storedPings.length; i++) {
       var ping = storedPings[i];
       var dx = clickedLng - ping.lng;
@@ -136,22 +143,31 @@ globe.plugins.objects.add (ping.lng, ping.lat,{ imagesrc:"images/the coffee bean
   // -----------------------------
   function showModalWithRecipe(ping) {
     var modal = document.getElementById('recipeModal'); // Make sure this exists in your HTML
-    const url =ping.url ? ping.url : "recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html"
+    const url = ping.url ? ping.url : `recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html`;
+
+    
     modal.innerHTML = `
-      <h2>Coffee Recipe from ${ping.name}</h2>
-      <p></p>
- <!--<p>Longitude: ${ping.lng.toFixed(2)}, Latitude: ${ping.lat.toFixed(2)}</p> -->
-      <!--<a href=${url} target="_blank">View Full Recipe</a>-->
-      ${url}
+    <h2>Coffee Recipe from ${ping.name}</h2>
+    <p></p>
+    ${url}
+    <button id="closeModalBtn" style="margin-top: 10px;">Close</button>
     `;
+    
     modal.style.display = 'block';
-  }
+    
+    // Add event listener to the close button
+    document.getElementById('closeModalBtn').onclick = function() {
+    modal.style.display = 'none';
+    };
+    }
+    
+    
 
   // -----------------------------
   // Draw the globe!
   // -----------------------------
   globe.draw(canvas);
-  globe.plugins.objects.add(-1.3167103, 50.6927176, { imagesrc:"images/the coffee bean.jpg" }); //line test change from planet to globe
+  globe.plugins.objects.add(-1.3167103, 50.6927176, { imagesrc:"images/what transp bean.webp" }); //line test change from planet to globe
   console.log(globe.plugins)
 
 
