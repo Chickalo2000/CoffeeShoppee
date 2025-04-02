@@ -16,31 +16,34 @@ body {
   margin-top: 20px;
 }
 
-.container1 {
-  background-color: rgb(205, 39, 58);
-  position: relative;
+.p-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  background-image: url('images/image.webp');
-  background-size: contain; /* Proportional scaling */
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 90vw; /* Adjusted width */
-  height: 90vh; /* Adjusted height */
-  border: 10px solid rgb(205, 39, 58); /* Added red border */
-  margin: 5vh auto; /* Added margin for better positioning */
+  width: 100%;
+  height: auto;
+}
+
+.container1 {
+  display:flex;
+  flex: 1;
+  margin: 10px;
+}
+
+.container2 {
+  display: flex;
+  flex: 1;
+  margin: 10px;
 }
 
 
-#recipeModal {
+.recipeModal {
   display: none; /* Hidden initially */
   position: fixed;
   top: 20%;
   left: 50%;
-  transform-style: preserve-3d
+  transform-style: preserve-3d;
   transform: translate(-50%, -20%);
   background-color: white; /* Contrast against background */
   color: black; /* For legible text */
@@ -69,16 +72,6 @@ body {
   transform: translate(-50%, -50%);
   width: 32%; /* Adjust size */
   height: auto; /* Maintain aspect ratio */
-}
-
-
-.container2 {
-  background-color: #f5d20a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
 }
 
 .background {

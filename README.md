@@ -1,11 +1,5 @@
 # CoffeeShoppee
 
-/
-
-### ** Project Plan Outline**
-
-#### **1. Project Overview**
-
 **Objective:**
 
 - **Title:** Coffee Shoppee
@@ -14,11 +8,13 @@
 **Key Features:**
 
 - **Interactive 3D Rotating Globe:** Clickable coffee bean icons over countries to display recipes.;
-- **Recipe Pages:** Detailed recipes with ingredients, preparation steps, cultural background, and YouTube video links, including images or videos.;
+- **Recipe Model:** Detailed recipes with ingredients, preparation steps, cultural background, and YouTube video links, including images or videos.;
 - **Responsive Design:** Ensure accessibility and visual appeal on desktops, tablets, and mobile devices.;
-- **Search and Filter Functionality:** Users can search for recipes by name, ingredient, or country and filter based on brewing method or flavor profile.;
+- **Recipe Submission Form for Users:** Allows users to submit their own coffee recipes unique to their culture.
+- **Coffee Fun Fact Generator:** Provides user with an added feature, pulls from a collection of fun facts 
+stored in 
 
-#### **2. Collaboration Strategy**
+**2. Collaboration Strategy**
 
 - **Roles and Responsibilities:** 
   - **Both:** Work on both front-end and back-end to gain full-stack experience.;
@@ -26,7 +22,7 @@
   - Use Git and GitHub for code collaboration and version tracking.;
   - Regularly commit changes with clear messages to reflect contributions.;
 
-#### **3. Technical Insight**
+**3. Technical Insight**
 
 **Technologies and Tools:**
 
@@ -38,14 +34,14 @@
 
 **Integration Plan:**
 
-- **Globe Implementation:** Use Planetary.js to create the 3D rotating globe with custom markers.;
-- **Event Handling:** Add click events to markers to fetch and display recipes.;
+- **Globe Implementation:** Use Planetary.js to create the 3D rotating globe with custom coffee bean markers.;
+- **Event Handling:** Add click events to markers to fetch and display recipe videos.;
 - **Responsive Design:** Utilize media queries in CSS to adjust layouts.;
 - **Module Organization:** Organize code into modules for clarity (separate files for globe functionality, recipe data handling, UI components).;
 
 **YouTube Integration:**
 
-- **Recipe Pages:** Include an iframe to embed YouTube videos or link directly to YouTube videos relevant to the recipes.;
+- **Recipe Pages:** 
 
 #### **4. Visual Aids (Optional but Recommended)**
 
@@ -60,7 +56,7 @@
 - Show user navigation from home page to recipe viewing:
   1. User lands on home page with interactive globe.;
   2. User clicks on a coffee bean icon over a country.;
-  3. A modal or new page displays recipes from that country, including YouTube video links.;
+  3. A modal or new page displays recipe youtube video from that country, including YouTube video links.;
   4. User selects a specific recipe to view details.;
 
 #### **5. Soliciting Mentor Feedback**
@@ -89,7 +85,19 @@
 - **SEO Optimization:** Naturally include relevant keywords in your content, headings, and meta descriptions.
 - **Accessibility:** Ensure site is navigable via keyboard, include alt text for images, use appropriate color contrasts.
 
-********************************************
+************************************************************************************************************
+## Installation & Setup
+
+**Clone the Repository** 
+Step 1: Git clone https://github.com/yourusername/CoffeeShoppee.git/
+Step 2: cd CoffeeShoppee/
+
+**Install Dependancies**
+npm install
+
+**Run Project Locally**
+node submissionform.js
+Press Ctrl + C to end server
 
 
 : [Planetary.js Documentation](https://planetaryjs.com/documentation/)
