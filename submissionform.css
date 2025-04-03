@@ -46,7 +46,17 @@ input[type="text"], input[type="email"], input[type="number"], textarea {
     flex-direction: column;
     margin-top: 20px;
 }
-
+button,
+a ,select,input[type="file"] {
+  font-size: 10px;
+  padding: 10px;
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+}
 @media (max-width: 600px) {
     body {
         padding: 10px;

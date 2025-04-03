@@ -6,12 +6,11 @@
   globe.loadPlugin(autorotate(4));
   
   
-  // Load the earth plugin which draws oceans, land, and borders.
   globe.loadPlugin(planetaryjs.plugins.earth({
     topojson: { file: '/world-110m-withlakes.json' },
-    oceans:   { fill: '#ca8659 ' },
-    land:     { fill: '#B62626' },
-    borders:  { stroke: '#F5d20a' }
+    oceans:   { fill: '#6F4E37' },
+    land:     { fill: '#D2B48C' },
+    borders:  { stroke: '#8B4513' }
   }));
   
   // Load our custom lakes plugin to draw lakes.
@@ -36,7 +35,7 @@
   }));
 
   // Set the globe's initial scale, offset, and rotation.
-  globe.projection.scale(130).translate([175, 175]).rotate([0, -10, 0]);
+  globe.projection.scale(195).translate([195, 195]).rotate([0, -10, 0]);
 
   // -----------------------------
   // Fixed Pings for Selected Regions
@@ -59,20 +58,28 @@
 
   // Add pings for each region.
   setInterval(() => {
-    storedPings.forEach(function(ping) {
-      console.log(`Ping added: ${ping.name}, Longitude: ${ping.lng}, Latitude: ${ping.lat}`); 
-      if (globe.plugins.pings) {
-        // Adding a smaller image to each ping
-        globe.plugins.objects.add(ping.lng, ping.lat, { 
-          imagesrc: "images/what transp bean.webp", 
-          imagewidth: 15, // Adjust the width of the image
-          imageheight: 15 // Adjust the height of the image
-        });
-      } else {
-        console.error("The 'pings' plugin is not available.");
-      }
-    }); 
-  }, 1500);
+    storedPings.forEach(function (ping) {
+        console.log(`Ping added: ${ping.name}, Longitude: ${ping.lng}, Latitude: ${ping.lat}`);
+
+        if (globe.plugins.objects) {
+            // Calculate accurate coordinates using the projection
+            const [x, y] = globe.projection([ping.lng, ping.lat]);
+
+            // Check if coordinates are valid
+            if (x && y) {
+                globe.plugins.objects.add(ping.lng, ping.lat, {
+                    imagesrc: "images/what transp bean.webp",
+                    imagewidth: 10, // Adjusted size
+                    imageheight: 10 // Adjusted size
+                });
+            } else {
+                console.error("Invalid coordinates for ping:", ping);
+            }
+        } else {
+            console.error("The 'objects' plugin is not available.");
+        }
+    });
+}, 1500);
   
 
 
@@ -122,45 +129,52 @@
   // This function checks if a click is close enough to any stored ping.
   function handlePingClick([clickedLng, clickedLat]) {
     console.log(`User clicked at: Longitude ${clickedLng}, Latitude ${clickedLat}`);
-    // Define a threshold (in degrees) to decide if a ping was hit.
-    var threshold = 50;
+    
+    var threshold = 15 * (globe.projection.scale() / 200); // Scale threshold with zoom levelon
+
     for (var i = 0; i < storedPings.length; i++) {
-      var ping = storedPings[i];
-      var dx = clickedLng - ping.lng;
-      var dy = clickedLat - ping.lat;
-      var distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < threshold) {
-        console.log(`Ping found near: ${ping.name}`);
-        showModalWithRecipe(ping);
-        return;
-      }
+        var ping = storedPings[i];
+        var dx = clickedLng - ping.lng;
+        var dy = clickedLat - ping.lat;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < threshold) {
+            console.log(`Ping found near: ${ping.name}`);
+            showModalWithRecipe(ping);
+            return;
+        }
     }
     console.log("No ping near the clicked position.");
-  }
+}
 
   // -----------------------------
   // Display the modal with the coffee recipe.
   // -----------------------------
   function showModalWithRecipe(ping) {
-    var modal = document.getElementById('recipeModal'); // Make sure this exists in your HTML
-    const url = ping.url ? ping.url : `recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html`;
+    var modal = document.getElementById('recipeModal'); // Ensure this exists in your HTML
 
-    
+    // Default URL logic (ping.url is expected to contain the embedded YouTube video)
+    const url = ping.url || `recipe-link-${ping.name.toLowerCase().replace(/\s+/g, '-')}.html`;
+
     modal.innerHTML = `
-    <h2>Coffee Recipe from ${ping.name}</h2>
-    <p></p>
-    ${url}
-    <button id="closeModalBtn" style="margin-top: 10px;">Close</button>
+        <div class="modal-content">
+        <span id="closeModalBtn" style="cursor: pointer; font-size: 40px; position: absolute; top: 10px; right: 15px;">&times;</span> <!-- X icon -->
+            <h2>Coffee Recipe from ${ping.name}</h2>
+            <p>Check out this amazing recipe!</p>
+            <div class="video-container">
+                ${ping.url} <!-- Embed YouTube video from the object -->
+            </div>
+          
+        </div>
     `;
-    
-    modal.style.display = 'block';
-    
-    // Add event listener to the close button
-    document.getElementById('closeModalBtn').onclick = function() {
-    modal.style.display = 'none';
+
+    modal.style.display = 'flex'; // Show the modal
+
+    // Add event listener for the close button
+    document.getElementById('closeModalBtn').onclick = () => {
+        modal.style.display = 'none'; // Hide the modal when "Close" is clicked
     };
-    }
-    
+}  
     
 
   // -----------------------------
