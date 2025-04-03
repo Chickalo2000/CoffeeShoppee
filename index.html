@@ -4,26 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoffeeShoppee</title>
-    
-    <link rel="stylesheet" href="styles.css">
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="js/planetaryjs.min.js"></script>
-
-    <style>
-        #rotatingGlobe {
-            width: 400px;
-            height: 400px;
-            cursor: move;
-        }
-    </style>
-
+    <link rel="stylesheet" href="styles.css">
     <script>
         planetaryjs.plugins.objects = function(config) {
             var objects = [];
             config = config || {};
             console.log("ping");
-
             const addObject = (lng, lat, options = {}) => {
                 options.speed = options.speed || config.speed || 0;
                 options.imagesrc = options.imagesrc || config.imagesrc || "";
@@ -48,8 +37,8 @@
             };
 
             const drawObject = (planet, context, timeChange, object) => {
-                const newLng = object.options.speed > 0 
-                    ? object.lng + (timeChange * object.options.speed) / 100 
+                const newLng = object.options.speed > 0
+                    ? object.lng + (timeChange * object.options.speed) / 100
                     : object.lng;
 
                 const coords = planet.projection([newLng, object.lat]);
@@ -61,7 +50,7 @@
                     [-planet.projection.rotate()[0], -planet.projection.rotate()[1]]
                 );
 
-                if (geoAngle > 1.57) return; // Ignore objects behind the sphere
+                if (geoAngle > 1.57) return;
 
                 if (object.options.fade) {
                     const closeness = 1.57 - geoAngle;
@@ -69,14 +58,14 @@
                 }
 
                 context.drawImage(
-                    img, 
+                    img,
                     coords[0] - object.options.imagewidth / 2,
                     coords[1] - object.options.imageheight / 2,
                     object.options.imagewidth,
                     object.options.imageheight
                 );
 
-                context.globalAlpha = 1; // Reset transparency
+                context.globalAlpha = 1;
             };
 
             return planet => {
@@ -87,28 +76,50 @@
             };
         };
     </script>
-</head>
-
-<body class="background">
-    <article>
-             <!-- <img src="images/image.webp" alt="Coffee Shop Image"> -->
-    </article>
-    <h1 class="websitename">CoffeeShoppee</h1>
     
-<div class="p-container">
-        <div class="container1">
+</head>
+<body>
+<center>
+<nav>
+    <br>
+    <img src="images/logo.png" width="400" alt="CoffeeShoppee Logo" class="logo"><br><br><br>
+    <div class="flexcontainer">
+        <div class="flexbox">
+            <h2>Fun Facts</h2>
+            <p>🏅 Finland Loves Coffee the Most! Finns consume more coffee per person than any other country—about 12 kg per year!</p>
+            <p>☕ Decaf is Not Caffeine-Free. Decaf coffee still contains about 1-2% of the caffeine found in a regular cup.</p>
+            <br>
+            <a href="submissionform.html"> Submit Recipe </a>
+        </div>
+        <div class="flexbox">
+            <div class="globe">
+                <div id="recipeModal" class="container2"></div>
+                <canvas id="rotatingGlobe" width="450" height="450"></canvas>
+            </div>
+        </div>
     </div>
-    <div class="container2">
-        <div id="recipeModal"></div>
-        <canvas id="rotatingGlobe" width="600" height="600"></canvas>
-</div>
-
-    <footer>
-        <div id="socialMedia"></div>
-    </footer>
-
+</nav>
+<br>
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h2>About CoffeeShoppee</h2>
+            <p>CoffeeShoppee is your destination for exploring unique coffee recipes from around the world. Join us to experience the rich aroma and flavors of coffee cultures worldwide!</p>
+        </div>
+        <div class="footer-column">
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message"></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</footer>
 <script src="js/rotatingplanet.js"></script>
 </body>
-
 </html>
-
