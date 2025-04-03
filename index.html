@@ -82,12 +82,25 @@
 <center>
 <nav>
     <br>
-    <img src="images/logo.png" width="400" alt="CoffeeShoppee Logo" class="logo"><br><br><br>
+    <img src="images/Designer (1).png" width="400" alt="CoffeeShoppee Logo" class="logo"><br><br><br>
     <div class="flexcontainer">
         <div class="flexbox">
-            <h2>Fun Facts</h2>
-            <p>🏅 Finland Loves Coffee the Most! Finns consume more coffee per person than any other country—about 12 kg per year!</p>
-            <p>☕ Decaf is Not Caffeine-Free. Decaf coffee still contains about 1-2% of the caffeine found in a regular cup.</p>
+            <h1>Random Fun Fact</h1>
+  <div id="fact"></div>
+  <button onclick="fetchFact()">Get New Fact</button>
+
+  <script>
+    async function fetchFact() {
+      try {
+        const response = await fetch("http://localhost:3000/funfact");
+        const data = await response.json();
+        document.getElementById("fact").innerText = data.fact;
+      } catch (error) {
+        console.error("Error fetching fun fact:", error);
+      }
+    }
+  </script>
+
             <br>
             <a href="submissionform.html"> Submit Recipe </a>
         </div>
