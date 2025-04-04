@@ -41,6 +41,14 @@ body {
   background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
 }
+
+#funFact{
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .modal-content {
   position: absolute;
   top: 50%;

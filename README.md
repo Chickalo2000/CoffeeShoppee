@@ -1,104 +1,52 @@
 # CoffeeShoppee
 
-**Objective:**
+CoffeeShoppee is a dynamic, full-stack project that seamlessly blends technology and creativity to bring coffee enthusiasts a unique global experience. The centerpiece of the website is a visually engaging 3D rotating globe, built using Planetary.js, which allows users to explore and discover coffee recipes from different countries by interacting with clickable coffee bean markers. Each recipe provides a comprehensive view of the coffee culture it represents, including ingredients, preparation steps, cultural background, and embedded YouTube videos. With an emphasis on accessibility and user engagement, CoffeeShoppee incorporates responsive design, ensuring smooth navigation and aesthetic appeal across all devices. Additionally, a Coffee Fun Fact Generator and a recipe submission form invite users to actively participate, either by enjoying entertaining coffee trivia or by contributing their own recipes to celebrate their culture. Powered by robust backend technology, including Node.js, Express.js, and MongoDB, this project also demonstrates proficient use of version control with Git and GitHub, modular code organization, and a collaborative approach to development. CoffeeShoppee is designed not just to inform and delight, but to connect coffee lovers around the world through an interactive and user-friendly platform.
 
-- **Title:** Coffee Shoppee
-- **Description:** Develop a responsive website that showcases coffee recipes from various countries. An interactive 3D rotating globe will serve as the main interface, allowing users to explore recipes by clicking on coffee bean icons placed over different countries.;
+### Key Features
+1. **Interactive 3D Rotating Globe:**  
+   Developed using Planetary.js, the globe features clickable coffee bean markers for each country, enabling users to discover recipes from different regions. Each click fetches and displays recipe videos, immersing users in the coffee culture of that region.
 
-**Key Features:**
+2. **Recipe Submission Form:**  
+   Users can submit their own coffee recipes, contributing to the platform's community-driven approach. The form captures essential details, including recipe name, ingredients, preparation steps, and cultural background. Backend processes ensure secure storage and proper validation of user submissions.
 
-- **Interactive 3D Rotating Globe:** Clickable coffee bean icons over countries to display recipes.;
-- **Recipe Model:** Detailed recipes with ingredients, preparation steps, cultural background, and YouTube video links, including images or videos.;
-- **Responsive Design:** Ensure accessibility and visual appeal on desktops, tablets, and mobile devices.;
-- **Recipe Submission Form for Users:** Allows users to submit their own coffee recipes unique to their culture.
-- **Coffee Fun Fact Generator:** Provides user with an added feature, pulls from a collection of fun facts 
-stored in 
+3. **Coffee Fun Fact Generator:**  
+   A playful feature that dynamically pulls coffee-related trivia from Firebase. It seamlessly integrates fun facts into the frontend, enhancing engagement and adding a layer of entertainment. Recent debugging ensures the generator runs smoothly across all devices.
 
-**2. Collaboration Strategy**
+---
 
-- **Roles and Responsibilities:** 
-  - **Both:** Work on both front-end and back-end to gain full-stack experience.;
-- **Version Control:** 
-  - Use Git and GitHub for code collaboration and version tracking.;
-  - Regularly commit changes with clear messages to reflect contributions.;
+### Technologies and Tools
+- **Front-End:** HTML5, CSS3 with responsive media queries, JavaScript  
+- **Back-End:** Node.js and Express.js  
+- **Database:** Firebase for dynamic data handling and Pantry for recipe storage  
+- **Interactive Map:** Planetary.js, along with TopoJSON/GeoJSON for geographical data integration  
+- **Version Control:** Git and GitHub for collaborative development and code management 
 
-**3. Technical Insight**
+---
 
-**Technologies and Tools:**
+### Integration Highlights
+- **Globe Functionality:** Created using Planetary.js with customized event handling for interactive coffee bean markers.  
+- **Responsive Design:** Developed layouts optimized for desktops, tablets, and mobile devices.  
+- **Recipe Videos:** Embedded YouTube videos for a rich user experience.
 
-- **Front-End:** HTML5, CSS3 (using media queries for responsiveness), JavaScript.;
-- **Back-End:** Node.js, Express.js for server-side coding.;
-- **Data Handling:** JSON files for storing and accessing coffee recipes.;
-- **Interactive Map:** Planetary.js for creating the 3D rotating globe, TopoJSON and GeoJSON for geographical data.;
-- **Version Control:** Git and GitHub for collaboration and code management.;
+---
 
-**Integration Plan:**
+### User Flow
+1. Navigate to the homepage, showcasing the 3D rotating globe.  
+2. Click on coffee bean markers over various countries.  
+3. View recipe videos.  
+4. Submit your own recipe through the dedicated form.
 
-- **Globe Implementation:** Use Planetary.js to create the 3D rotating globe with custom coffee bean markers.;
-- **Event Handling:** Add click events to markers to fetch and display recipe videos.;
-- **Responsive Design:** Utilize media queries in CSS to adjust layouts.;
-- **Module Organization:** Organize code into modules for clarity (separate files for globe functionality, recipe data handling, UI components).;
+---
 
-**YouTube Integration:**
+### Project Installation & Setup
+1. **Clone the Repository:**  
+   `git clone https://github.com/yourusername/CoffeeShoppee.git`  
+2. **Navigate to Project Directory:**  
+   `cd CoffeeShoppee/`  
+3. **Install Dependencies:**  
+   `npm install`  
+4. **Run Locally:**  
+   Start the server with `node submissionform.js`.  
+   Press `Ctrl + C` to stop the server when finished.
 
-- **Recipe Pages:** 
-
-#### **4. Visual Aids (Optional but Recommended)**
-
-**Wireframes and Mockups:**
-
-- **Home Page:** Layout featuring the interactive globe prominently, including a navigation menu.;
-- **Recipe Page:** Template showing recipe details (image, name, ingredients list, preparation steps, cultural notes, and YouTube video links).;
-- **Mobile Views:** Mockups for mobile devices to ensure responsive design.;
-
-**User Flow Diagrams:**
-
-- Show user navigation from home page to recipe viewing:
-  1. User lands on home page with interactive globe.;
-  2. User clicks on a coffee bean icon over a country.;
-  3. A modal or new page displays recipe youtube video from that country, including YouTube video links.;
-  4. User selects a specific recipe to view details.;
-
-#### **5. Soliciting Mentor Feedback**
-
-- **Alignment Check:** Share the refined project plan with a mentor to ensure it meets project requirements.;
-- **Feedback Implementation:** Adjust the plan based on mentor feedback.;
-
-#### **6. Additional Considerations**
-
-**Project Timeline:**
-
-- **February 1 - February 10:** Finalize project plan and designs, set up GitHub repository and project structure.;
-- **February 11 - February 28:** Begin development:;
-  - **Both:** Work on front-end and back-end setup simultaneously.;
-- **March 1 - March 15:** Integrate front-end and back-end components, implement interactive globe and connect it to recipe data.;
-- **March 16 - March 25:** Testing and debugging, optimize for responsiveness and performance.;
-- **March 26 - March 28:** Final revisions and preparation for submission.;
-
-**Collaboration Tools:**
-
-- **Communication:** Platforms like Slack, Text messages, or Google Classroom.;
-
-
-**Accessibility and Standards:**
-
-- **SEO Optimization:** Naturally include relevant keywords in your content, headings, and meta descriptions.
-- **Accessibility:** Ensure site is navigable via keyboard, include alt text for images, use appropriate color contrasts.
-
-************************************************************************************************************
-## Installation & Setup
-
-**Clone the Repository** 
-Step 1: Git clone https://github.com/yourusername/CoffeeShoppee.git/
-Step 2: cd CoffeeShoppee/
-
-**Install Dependancies**
-npm install
-
-**Run Project Locally**
-node submissionform.js
-Press Ctrl + C to end server
-
-
-: [Planetary.js Documentation](https://planetaryjs.com/documentation/)
-*/
+---
