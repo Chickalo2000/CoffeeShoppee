@@ -45,15 +45,16 @@ CoffeeShoppee is a dynamic, full-stack project that seamlessly blends technology
 2. **Navigate to Project Directory:**  
    `cd CoffeeShoppee/`  
 3. **Install Dependencies:**  
-   `npm install`  
-4. **Run Locally:**  
-   Start the server with `node submissionform.js`.
+   `npm install`
+4. **Run Locally:**
+   http://localhost:3000
+   type `npm start`
    Server will run on PORT 3000
    Press `Ctrl + C` to stop the server when finished.
 5. **Form Submission:**  
-   Hit 'Submit Recipe' and form will populate
+   Hit `Submit Recipe` and form will populate
    Input each field
-   Hit 'submit recipe' - If done correctly, system will advise "recipe submitted correctly."
+   Hit `submit recipe` - If done correctly, system will advise "recipe submitted cohttp://localhost:3000rrectly."
    Submitted information will then populate in the your terminal and will also be store in the Pantry database.
 
 
