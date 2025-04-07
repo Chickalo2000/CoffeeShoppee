@@ -46,16 +46,22 @@ CoffeeShoppee is a dynamic, full-stack project that seamlessly blends technology
    `cd CoffeeShoppee/`  
 3. **Install Dependencies:**  
    `npm install`
+   `npm run`
 4. **Run Locally:**
    http://localhost:3000
-   type `npm start`
+   type...
+   `node submissionform.js` - runs the submission form server from Pantry
+             & 
+   `npx nodemon server.js` - runs the server for fun facts with firebase
+   Open http://localhost:3000
    Server will run on PORT 3000
    Press `Ctrl + C` to stop the server when finished.
 5. **Form Submission:**  
    Hit `Submit Recipe` and form will populate
    Input each field
-   Hit `submit recipe` - If done correctly, system will advise "recipe submitted cohttp://localhost:3000rrectly."
+   Hit `submit recipe` - If done correctly, system will advise "recipe submitted correctly."
    Submitted information will then populate in the your terminal and will also be store in the Pantry database.
 
-
+Firebase database: https://console.firebase.google.com/project/coffeeshoppee-b3a30/database/coffeeshoppee-b3a30-default-rtdb/data
+Pantry database: https://getpantry.cloud/apiv1/pantry/28486b5b-2c1c-4633-9b7d-035657f988cc/basket/recipeSubmissions
 ---
