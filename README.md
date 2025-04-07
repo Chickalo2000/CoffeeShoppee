@@ -32,7 +32,7 @@ CoffeeShoppee is a dynamic, full-stack project that seamlessly blends technology
 
 ### User Flow
 
-1. Navigate to the homepage, running on (http://127.0.0.1:3001/index.html)showcasing the 3D rotating globe.  
+1. Navigate to the homepage showcasing the 3D rotating globe. 
 2. Click on coffee bean markers over various countries.  
 3. View recipe videos.  
 4. Submit your own recipe through the dedicated form, follow steps below regarding how to form submission.
@@ -48,12 +48,9 @@ CoffeeShoppee is a dynamic, full-stack project that seamlessly blends technology
    `npm install`
    `npm run`
 4. **Run Locally:**
-   http://localhost:3000
    type...
-   `node submissionform.js` - runs the submission form server from Pantry
-             & 
-   `npx nodemon server.js` - runs the server for fun facts with firebase
-   Open http://localhost:3000
+   `node submissionform.js` - runs the submission form server from Pantry.
+   Open via Live Server. http://127.0.0.1:3000/index.html
    Server will run on PORT 3000
    Press `Ctrl + C` to stop the server when finished.
 5. **Form Submission:**  
